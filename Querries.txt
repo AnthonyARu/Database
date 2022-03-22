@@ -1,0 +1,71 @@
+Querries: 
+
+ 
+
+1) Display customer order ID and order status for all products with cost less than 65$ 
+
+SELECT order_id, status, amount 
+FROM customer_order 
+WHERE amount < 65; 
+
+
+2) Display name of customer, address and email, of all customers with name beginning with “A”. 
+
+SELECT name, address, email 
+FROM CLIENT 
+WHERE name LIKE'A%'; 
+
+
+3) Display list of all employees with store id 2999 and 8999. 
+
+SELECT employee_gs_id, name, hire_date 
+FROM employees_gs 
+WHERE store_id= 2999 
+UNION ALL 
+SELECT employee_gs_id, name, hire_date 
+FROM employees_gs 
+WHERE store_id= 8999;
+
+
+4) Inner join Discount coupons and game applicable to.
+
+SELECT coupon_id, client_id, game_id, amount 
+FROM discount_coupons 
+NATURAL JOIN game; 
+
+
+5) Display client name and length of name of names starting with specific letters 
+
+SELECT INITCAP(name) "Name", 
+LENGTH(name) "Length" 
+FROM client 
+WHERE name LIKE 'B%' OR name LIKE 'A%' OR name LIKE 'T%' 
+ORDER BY name;
+
+6) Alter table employees_gs to add colum "salary"
+
+ALTER TABLE employees_gs
+ADD "SALARY_IN_EURO" NUMBER(5,0)
+ADD "SALARY_IN_RON" NUMBER(7,2)
+
+7) Update salary including experience
+
+UPDATE employees_gs 
+SET SALARY_IN_EURO = 1000 + 100*(2021 - (EXTRACT (YEAR FROM hire_date)));
+
+8)
+
+UPDATE employees_gs
+SET salary_in_euro = 2500
+WHERE salary_in_euro < 2500;
+
+9)
+
+UPDATE employees_gs 
+SET SALARY_IN_RON = 4.85 * SALARY_IN_EURO;
+
+10)
+
+SELECT *
+FROM employees_gs
+
